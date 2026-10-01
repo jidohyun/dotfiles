@@ -149,6 +149,21 @@ o.bind("ALT + RIGHT", "Word forward", option_word("CTRL", "Right", "ALT", "f"))
 o.bind("ALT + SHIFT + LEFT", "Select word back", option_word("CTRL SHIFT", "Left"))
 o.bind("ALT + SHIFT + RIGHT", "Select word forward", option_word("CTRL SHIFT", "Right"))
 o.bind("ALT + BACKSPACE", "Delete word", option_word("CTRL", "BackSpace", "ALT", "BackSpace"))
+-- Cmd+Backspace: delete to the start of the line. Apps get Shift+Home then
+-- Backspace; terminals get Ctrl+U (readline's kill-to-line-start).
+-- Window transparency toggle moves from SUPER+BACKSPACE to SUPER+ALT+BACKSPACE.
+hl.unbind("SUPER + BACKSPACE")
+o.bind("SUPER + ALT + BACKSPACE", "Toggle window transparency", "omarchy-hyprland-window-transparency-toggle")
+o.bind("SUPER + BACKSPACE", "Delete to line start", function()
+  if active_window_is_terminal() then
+    send_once("CTRL", "U")
+  else
+    send_once("SHIFT", "Home")
+    hl.timer(function()
+      send_once("", "BackSpace")
+    end, { timeout = 80, type = "oneshot" })
+  end
+end)
 o.bind("SUPER + bracketleft", "Back", mac_shortcut("ALT", "Left"))
 o.bind("SUPER + bracketright", "Forward", mac_shortcut("ALT", "Right"))
 
