@@ -175,8 +175,14 @@ o.bind("SUPER + SHIFT + code:12", "Screenshot Display", "omarchy-capture-screens
 o.bind("SUPER + SHIFT + code:13", "Screenshot Region", "omarchy-capture-screenshot region")
 o.bind("SUPER + SHIFT + code:14", "Capture menu", "omarchy-menu toggle capture")
 
--- YouTube web app was removed; drop its shortcut too.
-hl.unbind("SUPER + SHIFT + Y")
+-- Removed web apps; drop their shortcuts too.
+hl.unbind("SUPER + SHIFT + Y")          -- YouTube
+hl.unbind("SUPER + SHIFT + P")          -- Google Photos
+hl.unbind("SUPER + SHIFT + S")          -- Google Maps
+hl.unbind("SUPER + SHIFT + X")          -- X
+hl.unbind("SUPER + SHIFT + ALT + X")    -- X Post
+hl.unbind("SUPER + SHIFT + ALT + G")    -- WhatsApp
+hl.unbind("SUPER + SHIFT + CTRL + G")   -- Google Messages
 
 -- Logitech MX Keys examples:
 -- o.bind("SUPER + SHIFT + S", nil, "omarchy-capture-screenshot")
