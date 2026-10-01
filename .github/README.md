@@ -48,3 +48,21 @@ Then the parts that are not plain files:
     git clone https://aur.archlinux.org/ai-usagebar-bin.git /tmp/aub && (cd /tmp/aub && makepkg -si --skippgpcheck)
     omarchy plugin add https://github.com/akitaonrails/ai-usagebar.git --enable --yes
     hyprctl reload && hyprctl configerrors
+
+## Remote desktop (both ways, over Tailscale)
+
+This laptop is a Sunshine host (software x264; Asahi has no HW encoder) and a
+Moonlight client. Sunshine config is tracked (`.config/sunshine/sunshine.conf`);
+its credentials/state and Moonlight.conf (holds the pairing key) are not.
+
+    # sunshine lives in [omarchy], which pacman.conf marks Usage = Sync, so fetch + verify + -U
+    f=$(tar -xOf /var/lib/pacman/sync/omarchy.db --wildcards 'sunshine-*/desc' | awk '/%FILENAME%/{getline;print}')
+    curl -LO https://pkgs.omarchy.org/edge/aarch64/$f -LO https://pkgs.omarchy.org/edge/aarch64/$f.sig
+    pacman-key --verify $f.sig $f && sudo pacman -U $f
+    sudo ufw allow in on tailscale0 proto tcp to any port 47984,47989,48010
+    sudo ufw allow in on tailscale0 proto udp to any port 47998:48000
+    sunshine --creds sunshine '<password>'
+    systemctl --user enable --now app-dev.lizardbyte.app.Sunshine.service
+
+Moonlight client: 1920x1200, 60 fps, 20 Mbps, H.264, capture system keys in fullscreen.
+Right Option is no longer an fcitx5 trigger key, so Moonlight can use it as Cmd on a Mac host.
