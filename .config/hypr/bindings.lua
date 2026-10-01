@@ -175,6 +175,9 @@ o.bind("SUPER + SHIFT + code:12", "Screenshot Display", "omarchy-capture-screens
 o.bind("SUPER + SHIFT + code:13", "Screenshot Region", "omarchy-capture-screenshot region")
 o.bind("SUPER + SHIFT + code:14", "Capture menu", "omarchy-menu toggle capture")
 
+-- YouTube web app was removed; drop its shortcut too.
+hl.unbind("SUPER + SHIFT + Y")
+
 -- Logitech MX Keys examples:
 -- o.bind("SUPER + SHIFT + S", nil, "omarchy-capture-screenshot")
 -- o.bind("SUPER + H", nil, "voxtype record toggle")
