@@ -34,7 +34,7 @@ The repo is a bare git repo in ~/.dotfiles with $HOME as the work tree:
 Then the parts that are not plain files:
 
     omarchy install terminal kitty
-    omarchy theme install https://github.com/JustArmaan/omarchy-gotham-city-theme.git   # current theme
+    omarchy theme install https://github.com/vyrx-dev/omarchy-aamis-theme.git   # current theme
     # alternative kept in this repo: omarchy theme set rose-pine-dark
     omarchy toggle idle stay-awake
     omarchy plugin add https://github.com/proof001/omarchy-window-overview.git --enable --yes
