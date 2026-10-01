@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=LocalSend
+Comment=An open source cross-platform alternative to AirDrop
+Exec=env GTK_IM_MODULE=fcitx localsend
+Icon=localsend
+Terminal=false
+Categories=Utility;Network;
+StartupWMClass=Org.localsend.localsend_app
