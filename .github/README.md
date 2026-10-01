@@ -64,5 +64,9 @@ its credentials/state and Moonlight.conf (holds the pairing key) are not.
     sunshine --creds sunshine '<password>'
     systemctl --user enable --now app-dev.lizardbyte.app.Sunshine.service
 
-Moonlight client: 1920x1200, 60 fps, 20 Mbps, H.264, capture system keys in fullscreen.
+Moonlight client (to the Mac): 1920x1200, 60 fps, 15 Mbps, HEVC, software decoding,
+packet size 1024, frame pacing off, capture system keys in fullscreen.
+- packetsize 1024: Tailscale MTU is 1280; bigger video packets fragment and ~7% of frames were lost.
+- HEVC: the Mac's VideoToolbox H.264 declares 1 reference frame but uses 2, so frames corrupt.
+- software decode: the Asahi AVD HEVC hardware path (v4l2-request) stalls with a black screen.
 Right Option is no longer an fcitx5 trigger key, so Moonlight can use it as Cmd on a Mac host.
