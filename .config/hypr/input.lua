@@ -69,8 +69,12 @@ hl.config({
 -- turns three-finger motion into a mouse drag before Hyprland sees a swipe).
 -- Three fingers left/right: switch workspace (Spaces).
 hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
--- Three fingers up: Mission Control-style overview of every window.
+-- Three fingers up: Mission Control (Stage plugin, workspace previews).
 hl.gesture({ fingers = 3, direction = "up", action = function()
+  hl.dispatch(hl.dsp.exec_cmd("omarchy-shell -q shell toggle zzwong.stage"))
+end })
+-- Three fingers down: App Expose (window-overview plugin, every window).
+hl.gesture({ fingers = 3, direction = "down", action = function()
   hl.dispatch(hl.dsp.exec_cmd("omarchy-shell -q shell toggle io.github.proof001.window-overview"))
 end })
 

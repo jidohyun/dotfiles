@@ -37,5 +37,14 @@ Then the parts that are not plain files:
     omarchy theme install https://github.com/vyrx-dev/omarchy-aamis-theme.git   # current theme
     # alternative kept in this repo: omarchy theme set rose-pine-dark
     omarchy toggle idle stay-awake
-    omarchy plugin add https://github.com/proof001/omarchy-window-overview.git --enable --yes
+    omarchy plugin add https://github.com/proof001/omarchy-window-overview.git --enable --yes   # App Expose (3 fingers down, Ctrl+Down)
+    omarchy plugin add https://github.com/zzwong/omarchy-stage.git --enable --yes                # Mission Control (3 fingers up, Ctrl+Up)
+    omarchy plugin add https://github.com/Shavanced/omarchy-notification-center-plugin.git --enable --yes
+    omarchy plugin add https://github.com/GreyforgeLabs/reprieve.git --enable --yes
+    omarchy plugin add https://github.com/rosakodu/omarchy-dock.git --enable --yes
+    omarchy plugin add https://github.com/GreyforgeLabs/omarchy-hotbar.git --yes && ~/.config/omarchy/plugins/greyforge.hotbar/bin/hotbar install
+    omarchy plugin add https://github.com/thisisgm/omarchy-pods.git --enable --yes && ~/.config/omarchy/plugins/io.github.thisisgm.omapods/setup
+    # AI Usage: the AUR release signature key is not on public keyservers; checksum still verified
+    git clone https://aur.archlinux.org/ai-usagebar-bin.git /tmp/aub && (cd /tmp/aub && makepkg -si --skippgpcheck)
+    omarchy plugin add https://github.com/akitaonrails/ai-usagebar.git --enable --yes
     hyprctl reload && hyprctl configerrors

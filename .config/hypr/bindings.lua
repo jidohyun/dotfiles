@@ -164,6 +164,9 @@ o.bind("SUPER + BACKSPACE", "Delete to line start", function()
     end, { timeout = 80, type = "oneshot" })
   end
 end)
+-- Ctrl+Up = Mission Control (Stage), Ctrl+Down = App Expose (window overview).
+o.bind("CTRL + UP", "Mission Control", "omarchy-shell -q shell toggle zzwong.stage")
+o.bind("CTRL + DOWN", "App Expose", "omarchy-shell -q shell toggle io.github.proof001.window-overview")
 o.bind("SUPER + bracketleft", "Back", mac_shortcut("ALT", "Left"))
 o.bind("SUPER + bracketright", "Forward", mac_shortcut("ALT", "Right"))
 

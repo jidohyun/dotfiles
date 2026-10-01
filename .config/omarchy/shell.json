@@ -14,6 +14,9 @@
           "id": "omarchy.menu"
         },
         {
+          "id": "greyforge.hotbar"
+        },
+        {
           "id": "omarchy.workspaces"
         }
       ],
@@ -41,6 +44,21 @@
           "id": "omarchy.tray"
         },
         {
+          "id": "rosakodu.dock"
+        },
+        {
+          "id": "io.github.thisisgm.omapods"
+        },
+        {
+          "id": "tech.greyforge.reprieve"
+        },
+        {
+          "id": "shavanced.notification-center"
+        },
+        {
+          "id": "akitaonrails.ai-usagebar"
+        },
+        {
           "id": "omarchy.agents"
         },
         {
@@ -64,6 +82,9 @@
   "plugins": [
     {
       "id": "io.github.proof001.window-overview"
+    },
+    {
+      "id": "zzwong.stage"
     }
   ]
 }
