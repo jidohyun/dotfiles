@@ -125,6 +125,33 @@ o.bind("SUPER + ALT + RIGHT", "Focus on right window", hl.dsp.focus({ direction 
 o.bind("SUPER + ALT + UP", "Focus on above window", hl.dsp.focus({ direction = "u" }))
 o.bind("SUPER + ALT + DOWN", "Focus on below window", hl.dsp.focus({ direction = "d" }))
 
+-- Option (ALT) text editing, macOS-style:
+--   Option+Left/Right        word back/forward
+--   Option+Shift+Left/Right  select by word
+--   Option+Backspace         delete previous word
+-- In terminals, word moves send readline's Alt+B/Alt+F and Option+Backspace
+-- passes through as Alt+Backspace (both already mean "word" in a shell).
+-- This takes over Alt+Left/Right, which Linux browsers use for back/forward,
+-- so Cmd+[ / Cmd+] become back/forward like on macOS.
+local function option_word(app_mods, app_key, terminal_mods, terminal_key)
+  return function()
+    if active_window_is_terminal() then
+      if terminal_mods then
+        send_once(terminal_mods, terminal_key)
+      end
+    else
+      send_once(app_mods, app_key)
+    end
+  end
+end
+o.bind("ALT + LEFT", "Word back", option_word("CTRL", "Left", "ALT", "b"))
+o.bind("ALT + RIGHT", "Word forward", option_word("CTRL", "Right", "ALT", "f"))
+o.bind("ALT + SHIFT + LEFT", "Select word back", option_word("CTRL SHIFT", "Left"))
+o.bind("ALT + SHIFT + RIGHT", "Select word forward", option_word("CTRL SHIFT", "Right"))
+o.bind("ALT + BACKSPACE", "Delete word", option_word("CTRL", "BackSpace", "ALT", "BackSpace"))
+o.bind("SUPER + bracketleft", "Back", mac_shortcut("ALT", "Left"))
+o.bind("SUPER + bracketright", "Forward", mac_shortcut("ALT", "Right"))
+
 -- Screenshots: Cmd+Shift+3 full screen, Cmd+Shift+4 region, Cmd+Shift+5 capture menu.
 o.bind("SUPER + SHIFT + code:12", "Screenshot Display", "omarchy-capture-screenshot fullscreen")
 o.bind("SUPER + SHIFT + code:13", "Screenshot Region", "omarchy-capture-screenshot region")
