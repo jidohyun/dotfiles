@@ -68,6 +68,16 @@ Moonlight client (to the Mac): 1728x1080 (exact half of the 3456-wide panel), 60
 HEVC, software decoding, packet size 1024, frame pacing off, V-Sync off, capture system keys in
 fullscreen. Launched pinned to the P-cores (`taskset -c 2-9`, cpu0-1 are E-cores) via
 `.local/share/applications/com.moonlight_stream.Moonlight.desktop`. Measured: decode ~5 ms, 0 errors.
+Mac -> this laptop: the Mac's personal tailnet is a userspace tailscaled (the Tailscale app is on a
+company tailnet), so Mac apps reach this laptop only through its SOCKS5 proxy (127.0.0.1:1055).
+`.config/sunshine/mac-relay/moonlight-socks-relay.py` runs on the Mac as LaunchAgent
+`com.m1omarchy.moonlight-socks-relay`, listening on 127.0.0.1 TCP 48984/48989/49010 and UDP
+48998-49000 and forwarding via SOCKS5 CONNECT / UDP ASSOCIATE. This laptop's Sunshine uses
+port base 48989 (the Mac's own Sunshine owns the defaults), `capture = kms` (wlr capped at ~24 fps;
+the binary already has cap_sys_admin) and `min_threads = 8`. Mac Moonlight: host 127.0.0.1:48989,
+1728x1080@60, H.264, 8 Mbps (15 Mbps overloads the relay path: 25% loss), packet size 1024,
+remote-desktop mouse mode (KMS has no cursor plane). Measured: 57.6 fps, 2.3% loss.
+
 Mac host side (2026-10-02, measured from here): Sunshine 2026.914 on default ports, no relay,
 vt_realtime = disabled (enabled caused ~32 IDR waits/25 s), fec_percentage = 10. The Mac is on
 Wi-Fi; turning AWDL off (`sudo ifconfig awdl0 down`, resets on reboot) cut stream jitter from
