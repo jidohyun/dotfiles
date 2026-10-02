@@ -104,8 +104,9 @@ o.bind("SUPER + TAB", "Switch to next window", hl.dsp.window.cycle_next())
 o.bind("SUPER + TAB", "Reveal active window on top", hl.dsp.window.bring_to_top())
 o.bind("SUPER + SHIFT + TAB", "Switch to previous window", hl.dsp.window.cycle_next({ next = false }))
 o.bind("SUPER + SHIFT + TAB", "Reveal active window on top", hl.dsp.window.bring_to_top())
-o.bind("SUPER + SPACE", "Apps menu (Spotlight)", "omarchy-menu toggle apps")
-o.bind("SUPER + ALT + SPACE", "Omarchy menu", "omarchy-menu toggle")
+-- fcitx5-remote -c switches to English first, so menu searches never start in Hangul.
+o.bind("SUPER + SPACE", "Apps menu (Spotlight)", "fcitx5-remote -c; omarchy-menu toggle apps")
+o.bind("SUPER + ALT + SPACE", "Omarchy menu", "fcitx5-remote -c; omarchy-menu toggle")
 o.bind("SUPER + CTRL + Q", "Lock system", "omarchy-system-lock")
 
 -- Text navigation: Cmd+Left/Right = line start/end, Cmd+Up/Down = top/bottom.

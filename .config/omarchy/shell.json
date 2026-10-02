@@ -20,10 +20,14 @@
           "id": "omarchy.workspaces"
         }
       ],
-      "center": [],
-      "right": [
+      "center": [
         {
           "id": "omarchy.weather"
+        }
+      ],
+      "right": [
+        {
+          "id": "user.fcitx-state"
         },
         {
           "id": "omarchy.system-update"
@@ -41,6 +45,9 @@
           "id": "omarchy.keyboard-layout"
         },
         {
+          "id": "omarchy.agents"
+        },
+        {
           "id": "omarchy.tray"
         },
         {
@@ -56,10 +63,11 @@
           "id": "shavanced.notification-center"
         },
         {
-          "id": "akitaonrails.ai-usagebar"
-        },
-        {
-          "id": "omarchy.agents"
+          "id": "akitaonrails.ai-usagebar",
+          "lastSelectedEntryId": "anthropic",
+          "showValue": true,
+          "showProvider": true,
+          "showAll": true
         },
         {
           "id": "omarchy.bluetooth"
@@ -85,6 +93,18 @@
     },
     {
       "id": "zzwong.stage"
+    },
+    {
+      "id": "omarchy.weather"
+    },
+    {
+      "id": "omarchy.monitor"
+    },
+    {
+      "id": "omarchy.agents"
+    },
+    {
+      "id": "omarchy.tailscale"
     }
   ]
 }

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "user.fcitx-state",
+  "name": "Input language",
+  "version": "1.0.0",
+  "author": "user",
+  "description": "Shows current Fcitx5 input language (Korean/English); click toggles",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "FcitxState.qml"
+  },
+  "barWidget": {
+    "displayName": "Input language",
+    "description": "Fcitx5 Korean/English state indicator",
+    "category": "System",
+    "allowMultiple": false
+  }
+}
