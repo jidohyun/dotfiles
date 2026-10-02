@@ -68,7 +68,9 @@ Moonlight client (to the Mac): 1728x1080 (exact half of the 3456-wide panel), 60
 HEVC, software decoding, packet size 1024, frame pacing off, V-Sync off, capture system keys in
 fullscreen. Launched pinned to the P-cores (`taskset -c 2-9`, cpu0-1 are E-cores) via
 `.local/share/applications/com.moonlight_stream.Moonlight.desktop`. Measured: decode ~5 ms, 0 errors.
-Pending (needs approval, boot risk): patch apple_avd with omarchy-m1-video for HEVC HW decode.
+Tried 2026-10-02: omarchy-m1-video patched apple_avd (patches 029f57377a00) on this M1 Pro (t6000).
+HEVC HW decode still hit "H0 error" / "Frame processing timed out" and H.264 HW still re-requested
+IDRs, so it was uninstalled and the stock module + distro libva-v4l2_request-avd restored.
 - packetsize 1024: Tailscale MTU is 1280; bigger video packets fragment and ~7% of frames were lost.
 - HEVC: the Mac's VideoToolbox H.264 declares 1 reference frame but uses 2, so frames corrupt.
 - software decode: the Asahi AVD HEVC hardware path (v4l2-request) stalls with a black screen.
