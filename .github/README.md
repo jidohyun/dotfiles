@@ -68,6 +68,10 @@ Moonlight client (to the Mac): 1728x1080 (exact half of the 3456-wide panel), 60
 HEVC, software decoding, packet size 1024, frame pacing off, V-Sync off, capture system keys in
 fullscreen. Launched pinned to the P-cores (`taskset -c 2-9`, cpu0-1 are E-cores) via
 `.local/share/applications/com.moonlight_stream.Moonlight.desktop`. Measured: decode ~5 ms, 0 errors.
+Mac host side (2026-10-02, measured from here): Sunshine 2026.914 on default ports, no relay,
+vt_realtime = disabled (enabled caused ~32 IDR waits/25 s), fec_percentage = 10. The Mac is on
+Wi-Fi; turning AWDL off (`sudo ifconfig awdl0 down`, resets on reboot) cut stream jitter from
+±11-21 ms to ±1 ms and jitter drops from 7-8% to 0.8%.
 Tried 2026-10-02: omarchy-m1-video patched apple_avd (patches 029f57377a00) on this M1 Pro (t6000).
 HEVC HW decode still hit "H0 error" / "Frame processing timed out" and H.264 HW still re-requested
 IDRs, so it was uninstalled and the stock module + distro libva-v4l2_request-avd restored.
